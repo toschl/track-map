@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h1>Track Map</h1>
+        <div class="row">
+            <div class="col-md-8" id="googleMap"></div>
+            <div class="col-md-4">
+                <h2>Year</h2>
+                <ul id="yearlist">
+                    <li id="yearlist_All">All (0)</li>
+                </ul>
+                <h2>Sport</h2>
+                <ul id="typelist">
+                    <li id="typelist_All">All (0)</li>
+                </ul>
+                <h2>Track <span id="trackload"></span></h2>
+                <table id="tracktable" class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Name</th>
+                        <th>Distance</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

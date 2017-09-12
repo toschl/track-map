@@ -1,0 +1,11 @@
+html {
+    height: 100vh;
+}
+body {
+    height: 100vh;
+    padding-top: 4em;
+}
+#googleMap {
+    height: 80vh;
+    width: 100%;
+}
