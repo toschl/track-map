@@ -38,33 +38,6 @@ class StravaController extends Controller
      */
     public function check(Request $request)
     {
-        try {
-            $options = [
-              'clientId' => getenv('STRAVA_CLIENT_ID'),
-              'clientSecret' => getenv('STRAVA_CLIENT_SECRET'),
-            ];
-
-            $oauth = new OAuth($options);
-            $token = $oauth->getAccessToken('authorization_code', [
-              'code' => $request->get('code')
-            ]);
-
-            $values = $token->getValues();
-            $user = new User;
-            $user->id = 1;
-            $user->name = $values['athlete']['username'];
-            $user->strava_id = $values['athlete']['id'];
-            $user->strava_access_token = $token->getToken();
-            $user->strava_username = $values['athlete']['username'];
-
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
-            $em->flush();
-
-            return $this->redirect($this->generateUrl('homepage'));
-        } catch (Exception $e) {
-            print $e->getMessage();
-            return $this->redirect($this->generateUrl('homepage'));
-        }
+        return $this->redirect($this->generateUrl('homepage'));
     }
 }

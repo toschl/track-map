@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * User
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
-class User
+class User implements UserInterface
 {
     /**
      * @var int
@@ -54,4 +55,27 @@ class User
      * @ORM\Column(type="string", length=255)
      */
     public $strava_username;
+
+    public function getUsername()
+    {
+        return $this->id;
+    }
+
+    public function getRoles()
+    {
+        return array('ROLE_USER');
+    }
+
+    public function getPassword()
+    {
+    }
+
+    public function getSalt()
+    {
+    }
+
+    public function eraseCredentials()
+    {
+    }
+
 }

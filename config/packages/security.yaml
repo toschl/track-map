@@ -8,6 +8,12 @@ security:
             security: false
         main:
             anonymous: ~
+            logout:
+                path: logout
+                target: /
+            guard:
+                authenticators:
+                    - App\Security\StravaAuthenticator
 
             # activate different ways to authenticate
 
