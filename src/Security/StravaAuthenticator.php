@@ -29,8 +29,8 @@ class StravaAuthenticator extends AbstractGuardAuthenticator
     }
 
     public function start(
-      Request $request,
-      AuthenticationException $authException = null
+        Request $request,
+        AuthenticationException $authException = null
     ) {
         return $this->redirect($this->generateUrl('connect_strava'));
     }
@@ -67,6 +67,9 @@ class StravaAuthenticator extends AbstractGuardAuthenticator
             'strava_username' => $values['athlete']['username']
         ]);
         if ($existingUser) {
+            $existingUser->strava_access_token = $credentials->getToken();
+            $this->em->persist($existingUser);
+            $this->em->flush();
             return $existingUser;
         }
 
@@ -88,7 +91,11 @@ class StravaAuthenticator extends AbstractGuardAuthenticator
         return true;
     }
 
-    public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey) {
+    public function onAuthenticationSuccess(
+        Request $request,
+        TokenInterface $token,
+        $providerKey
+    ) {
         return new RedirectResponse($this->router->generate('homepage'));
     }
 
@@ -98,8 +105,8 @@ class StravaAuthenticator extends AbstractGuardAuthenticator
     }
 
     public function onAuthenticationFailure(
-      Request $request,
-      AuthenticationException $exception
+        Request $request,
+        AuthenticationException $exception
     ) {
         return new RedirectResponse($this->router->generate('homepage'));
     }
