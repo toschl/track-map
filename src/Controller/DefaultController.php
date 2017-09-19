@@ -14,9 +14,9 @@ class DefaultController extends Controller
      */
     public function index(Request $request)
     {
-        $strava_token = getenv('STRAVA_TOKEN');
+        $google_maps_api_key = getenv('GOOGLE_MAPS_API_KEY');
         $data = [
-          'strava_token' => $strava_token,
+          'google_maps_api_key' => $google_maps_api_key,
         ];
         return $this->render('default/index.html.twig', $data);
     }
