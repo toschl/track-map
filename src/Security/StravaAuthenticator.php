@@ -75,7 +75,7 @@ class StravaAuthenticator extends AbstractGuardAuthenticator
 
         $user = new User();
         $user->id = null;
-        $user->name = $values['athlete']['username'];
+        $user->username = $values['athlete']['username'];
         $user->strava_id = $values['athlete']['id'];
         $user->strava_access_token = $credentials->getToken();
         $user->strava_username = $values['athlete']['username'];

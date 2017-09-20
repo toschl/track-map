@@ -3,7 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
 /**
  * User
@@ -11,7 +11,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
-class User implements UserInterface
+class User implements AdvancedUserInterface
 {
     /**
      * @var int
@@ -27,7 +27,7 @@ class User implements UserInterface
      *
      * @ORM\Column(type="string", length=255)
      */
-    public $name;
+    public $username;
 
     /**
      * @var ArrayCollection
@@ -58,7 +58,7 @@ class User implements UserInterface
 
     public function getUsername()
     {
-        return $this->id;
+        return $this->username;
     }
 
     public function getRoles()
@@ -76,6 +76,31 @@ class User implements UserInterface
 
     public function eraseCredentials()
     {
+    }
+
+    public function getStravaAccessToken()
+    {
+        return $this->strava_access_token;
+    }
+
+    public function isAccountNonExpired()
+    {
+        return true;
+    }
+
+    public function isCredentialsNonExpired()
+    {
+        return true;
+    }
+
+    public function isAccountNonLocked()
+    {
+        return true;
+    }
+
+    public function isEnabled()
+    {
+        return true;
     }
 
 }
