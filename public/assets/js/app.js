@@ -1,4 +1,4 @@
-var types = {'All': 0};
+var sports = {'All': 0};
 var years = {'All': 0};
 
 function drawMap(data) {
@@ -9,7 +9,7 @@ function drawMap(data) {
     };
     var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
 
-    for(var i in data) {
+    for (var i = 0; i < data.length; i++) {
         if (data[i].summary_polyline) {
             var decodedLatLngs = google.maps.geometry.encoding.decodePath(data[i].summary_polyline);
             setStatus(i+1 + '/' + data.length);
@@ -25,7 +25,7 @@ function drawMap(data) {
                 bounds.extend(decodedLatLngs.pop());
             }
             writeTracklist(data[i]);
-            incrementType(data[i].type);
+            incrementSport(data[i].sport);
             incrementYear(data[i].start_date);
         }
     }
@@ -38,18 +38,18 @@ function setStatus(message) {
     $('#trackload').html(message);
 }
 
-function incrementType(type) {
-    if (types[type]) {
-        types[type]++;
-        $('#typelist_' + type).html(type + ' (' + types[type] + ')');
+function incrementSport(sport) {
+    if (sports[sport]) {
+        sports[sport]++;
+        $('#sportlist_' + sport).html(sport + ' (' + sports[sport] + ')');
     }
     else {
-        types[type] = 1;
-        $('#typelist').append('<li id="typelist_' + type + '">' + type + ' (' + types[type] + ')</li>');
+        sports[sport] = 1;
+        $('#sportlist').append('<li id="sportlist_' + sport + '">' + sport + ' (' + sports[sport] + ')</li>');
     }
 
-    types['All']++;
-    $('#typelist_All').html('All (' + types['All'] + ')');
+    sports['All']++;
+    $('#sportlist_All').html('All (' + sports['All'] + ')');
 }
 
 function incrementYear(start_date) {
@@ -72,6 +72,7 @@ function writeTracklist(track) {
     $('#tracktable > tbody:last-child').append('<tr>' +
         '<td>' + formattedDate.format('DD.MM.YY') + '</td>' +
         '<td>' + track.name + '</td>' +
+        '<td>' + track.sport + '</td>' +
         '<td>' + Math.round(track.distance/100)/10 + 'km</td>' +
         '</tr>');
 }
@@ -84,7 +85,6 @@ function myMap() {
         dataType: 'json',
         success: function(data){
             drawMap(data);
-            writeTracklist(data);
         }
     });
 }

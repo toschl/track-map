@@ -29,13 +29,16 @@ class DefaultController extends Controller
     public function data(Request $request)
     {
         $user = $this->getUser();
+        if (!$user) {
+            return new JsonResponse([]);
+        }
         $tourRepository = $this->getDoctrine()->getManager()->getRepository(Tour::class);
         $entites = $tourRepository->findBy(['user' => $user->getId()]);
         $data = [];
         foreach ($entites as $entity) {
             $data[] = [
                 'name' => $entity->name,
-                'type' => $entity->sport->name,
+                'sport' => $entity->sport->name,
                 'distance' => $entity->distance,
                 'start_date' => $entity->start_date->format('Y-m-d'),
                 'summary_polyline' => $entity->map_polyline,
