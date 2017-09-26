@@ -56,6 +56,11 @@ class User implements AdvancedUserInterface
      */
     public $strava_username;
 
+    public function getId()
+    {
+        return $this->id;
+    }
+
     public function getUsername()
     {
         return $this->username;

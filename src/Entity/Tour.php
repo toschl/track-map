@@ -28,6 +28,11 @@ class Tour
     public $user;
 
     /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    public $remote_id;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Sport", inversedBy="tours")
      * @ORM\JoinColumn(name="sport_id", referencedColumnName="id")
      */
@@ -68,19 +73,22 @@ class Tour
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="start_date", type="datetimetz")
+     * @ORM\Column(type="datetime")
      */
     public $start_date;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="country", type="string")
+     * @ORM\Column(type="string")
      */
     public $country;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     public $map_polyline;
+
+    public function getId()
+    {
+        return $this->id;
+    }
 }

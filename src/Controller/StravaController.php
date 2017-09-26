@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Service\TourImporter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Strava\API\Client;
 use Strava\API\Exception;
@@ -38,6 +39,18 @@ class StravaController extends Controller
      */
     public function check(Request $request)
     {
+        return $this->redirect($this->generateUrl('homepage'));
+    }
+
+    /**
+     * @Route("/refresh/strava", name="refresh_strava")
+     */
+    public function refresh(Request $request)
+    {
+        $user = $this->getUser();
+        $tour_importer = $this->container->get('App\Service\TourImporter');
+        $tour_importer->importForUser($user);
+
         return $this->redirect($this->generateUrl('homepage'));
     }
 }

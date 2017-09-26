@@ -10,8 +10,8 @@ function drawMap(data) {
     var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
 
     for(var i in data) {
-        if (data[i].map.summary_polyline) {
-            var decodedLatLngs = google.maps.geometry.encoding.decodePath(data[i].map.summary_polyline);
+        if (data[i].summary_polyline) {
+            var decodedLatLngs = google.maps.geometry.encoding.decodePath(data[i].summary_polyline);
             setStatus(i+1 + '/' + data.length);
             var polyline = new google.maps.Polyline({
                 path: decodedLatLngs,

@@ -34,4 +34,9 @@ class Sport
      */
     public $tours;
 
+    public function getId()
+    {
+        return $this->id;
+    }
+
 }
