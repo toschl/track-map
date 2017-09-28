@@ -48,6 +48,7 @@ class StravaController extends Controller
     public function refresh(Request $request)
     {
         $user = $this->getUser();
+        /** @var TourImporter $tour_importer */
         $tour_importer = $this->container->get('App\Service\TourImporter');
         $tour_importer->importForUser($user);
 

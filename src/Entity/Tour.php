@@ -46,7 +46,12 @@ class Tour
     public $name;
 
     /**
-     * @ORM\Column(type="decimal", scale=2)
+     * @ORM\Column(type="boolean")
+     */
+    public $public;
+
+    /**
+     * @ORM\Column(type="integer")
      */
     public $distance;
 
@@ -76,11 +81,6 @@ class Tour
      * @ORM\Column(type="datetime")
      */
     public $start_date;
-
-    /**
-     * @ORM\Column(type="string")
-     */
-    public $country;
 
     /**
      * @ORM\Column(type="text", nullable=true)

@@ -49,8 +49,6 @@ class TourImporter
         } catch (Exception $e) {
             // Failed
         }
-
-        return $this->redirect($this->generateUrl('homepage'));
     }
 
     protected function saveActivities(User $user, array $activities)
@@ -79,13 +77,13 @@ class TourImporter
             $tour->average_speed = $activity['average_speed'];
             $tour->sport = $sport;
             $tour->name = $activity['name'];
-            $tour->distance = $activity['distance'];
-            $tour->moving_time = $activity['moving_time'];
-            $tour->elevation_gain = $activity['total_elevation_gain'];
-            $tour->average_speed = $activity['average_speed'];
-            $tour->max_speed = $activity['max_speed'];
+            $tour->public = $activity['private'] ? FALSE : TRUE;
+            $tour->distance = intval($activity['distance']);
+            $tour->moving_time = intval($activity['moving_time']);
+            $tour->elevation_gain = intval($activity['total_elevation_gain']);
+            $tour->average_speed = floatval($activity['average_speed']);
+            $tour->max_speed = floatval($activity['max_speed']);
             $tour->start_date = new \DateTime($activity['start_date_local']);
-            $tour->country = $activity['location_country'];
             $tour->map_polyline = $activity['map']['summary_polyline'];
 
             $this->em->persist($tour);
