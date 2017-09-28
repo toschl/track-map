@@ -23,13 +23,13 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="#">Map <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
-                    </li>
                     {% if app.user %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('logout') }}">Logout</a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('refresh_strava') }}">Refresh data</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('logout') }}">Logout</a>
+                        </li>
                     {%  else %}
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('connect_strava') }}">Login with Strava</a>
