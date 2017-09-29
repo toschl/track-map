@@ -30,6 +30,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('logout') }}">Logout</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('account_delete') }}">Delete account</a>
+                        </li>
                     {%  else %}
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('connect_strava') }}">Login with Strava</a>
@@ -38,7 +41,23 @@
                 </ul>
             </div>
         </nav>
+
+        {% for label, messages in app.flashes %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                    {% for message in messages %}
+                        <div class="alert alert-{{ label }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
         {% block body %}{% endblock %}
+
         {% block javascripts %}
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>

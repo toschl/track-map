@@ -23,7 +23,7 @@ class Tour
 
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="tours")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")
      */
     public $user;
 
