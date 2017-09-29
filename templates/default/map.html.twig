@@ -19,7 +19,8 @@
                         </ul>
                     </div>
                 </div>
-                <h2>Track <span id="trackload"></span></h2>
+                <h2>Track <span id="trackload"></span> <a class="btn btn-primary" href="{{ path('refresh_strava') }}" role="button">Refresh data</a></h2>
+
                 <table id="tracktable" class="table table-striped">
                     <thead>
                     <tr>
@@ -35,4 +36,9 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&libraries=geometry&callback=myMap"></script>
 {% endblock %}

@@ -9,3 +9,7 @@ body {
     height: 80vh;
     width: 100%;
 }
+.jumbotron {
+    background-color: transparent;
+    text-align: center;
+}

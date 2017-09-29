@@ -14,13 +14,19 @@ class DefaultController extends Controller
     /**
      * @Route("/", name="homepage")
      */
-    public function index(Request $request)
+    public function homepage(Request $request)
     {
-        $google_maps_api_key = getenv('GOOGLE_MAPS_API_KEY');
-        $data = [
-          'google_maps_api_key' => $google_maps_api_key,
-        ];
-        return $this->render('default/index.html.twig', $data);
+        $user = $this->getUser();
+        if ($user) {
+            $google_maps_api_key = getenv('GOOGLE_MAPS_API_KEY');
+            $data = [
+              'google_maps_api_key' => $google_maps_api_key,
+            ];
+            return $this->render('default/map.html.twig', $data);
+        }
+        else {
+            return $this->render('default/welcome.html.twig', []);
+        }
     }
 
     /**

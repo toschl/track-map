@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Welcome to Track Map</h1>
+            <p class="lead">With "Track Map" you can simply login with your Strava account. Sync all your tracks. And see them on a single map.</p>
+            <p><a class="btn btn-lg btn-success" href="{{ path('connect_strava') }}" rule="button">Login with Strava</a></p>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <h2>Planned features</h2>
+                <ul>
+                    <li>Filter your tracks by year or sport type.</li>
+                    <li>See some nice statistics.</li>
+                    <li>Share your track map with your friends.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}
