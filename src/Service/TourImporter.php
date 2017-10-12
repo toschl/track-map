@@ -12,7 +12,6 @@ use Symfony\Component\Validator\Constraints\DateTime;
 
 class TourImporter
 {
-
     protected $em;
 
     public function __construct(EntityManager $em)
@@ -77,7 +76,7 @@ class TourImporter
             $tour->average_speed = $activity['average_speed'];
             $tour->sport = $sport;
             $tour->name = $activity['name'];
-            $tour->public = $activity['private'] ? FALSE : TRUE;
+            $tour->public = $activity['private'] ? false : true;
             $tour->distance = intval($activity['distance']);
             $tour->moving_time = intval($activity['moving_time']);
             $tour->elevation_gain = intval($activity['total_elevation_gain']);

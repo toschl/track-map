@@ -28,7 +28,6 @@ class AccountController extends Controller
             ->getForm();
 
         if ($form->handleRequest($request)->isValid()) {
-
             $userRepository = $this->getDoctrine()->getManager()->getRepository(User::class);
             $em = $this->getDoctrine()->getManager();
             $em->remove($user);

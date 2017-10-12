@@ -17,7 +17,6 @@ use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
 
 class StravaAuthenticator extends AbstractGuardAuthenticator
 {
-
     protected $em;
 
     protected $router;

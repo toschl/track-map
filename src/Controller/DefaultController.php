@@ -23,8 +23,7 @@ class DefaultController extends Controller
               'google_maps_api_key' => $google_maps_api_key,
             ];
             return $this->render('default/map.html.twig', $data);
-        }
-        else {
+        } else {
             return $this->render('default/welcome.html.twig', []);
         }
     }

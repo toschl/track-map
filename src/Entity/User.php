@@ -107,5 +107,4 @@ class User implements AdvancedUserInterface
     {
         return true;
     }
-
 }
