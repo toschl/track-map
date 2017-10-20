@@ -38,7 +38,7 @@ class DefaultController extends Controller
             return new JsonResponse([]);
         }
         $tourRepository = $this->getDoctrine()->getManager()->getRepository(Tour::class);
-        $entites = $tourRepository->findBy(['user' => $user->getId()]);
+        $entites = $tourRepository->findBy(['user' => $user->getId()], ['start_date' => 'DESC']);
         $data = [];
         foreach ($entites as $entity) {
             $data[] = [
