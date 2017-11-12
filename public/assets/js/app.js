@@ -8,6 +8,7 @@ function drawMap(data) {
         mapTypeId: google.maps.MapTypeId.TERRAIN,
     };
     var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+    var infoWindow = new google.maps.InfoWindow();
 
     for (var i = 0; i < data.length; i++) {
         if (data[i].summary_polyline) {
@@ -27,6 +28,22 @@ function drawMap(data) {
             writeTracklist(data[i]);
             incrementSport(data[i].sport);
             incrementYear(data[i].start_date);
+            var contentString = '<div class="infowindow">' +
+                '<h1>' +
+                data[i].name +
+                '</h1>' +
+                '<ul>' +
+                '<li>Date: ' + data[i].start_date + '</li>' +
+                '<li>Type: ' + data[i].sport + '</li>' +
+                '<li>Distance: ' + Math.round(data[i].distance/100)/10 + 'km</li>' +
+                '</ul>'
+                '</div>';
+            google.maps.event.addListener(polyline, "click", function(event) {
+                infoWindow.setContent(contentString);
+                infoWindow.setPosition(event.latLng);
+                infoWindow.open(map);
+
+            });
         }
     }
 
