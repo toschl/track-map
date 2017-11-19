@@ -28,7 +28,7 @@ function drawMap(data) {
             writeTracklist(data[i]);
             incrementSport(data[i].sport);
             incrementYear(data[i].start_date);
-            var contentString = '<div class="infowindow">' +
+            contentString = '<div class="infowindow">' +
                 '<h1>' +
                 data[i].name +
                 '</h1>' +
@@ -36,14 +36,15 @@ function drawMap(data) {
                 '<li>Date: ' + data[i].start_date + '</li>' +
                 '<li>Type: ' + data[i].sport + '</li>' +
                 '<li>Distance: ' + Math.round(data[i].distance/100)/10 + 'km</li>' +
-                '</ul>'
+                '</ul>' +
                 '</div>';
-            google.maps.event.addListener(polyline, "click", function(event) {
-                infoWindow.setContent(contentString);
-                infoWindow.setPosition(event.latLng);
-                infoWindow.open(map);
-
-            });
+            google.maps.event.addListener(polyline, "click", function(polyline, content) {
+                return function(event) {
+                    infoWindow.setContent(content);
+                    infoWindow.setPosition(event.latLng);
+                    infoWindow.open(map);
+                };
+            }(polyline,contentString));
         }
     }
 
