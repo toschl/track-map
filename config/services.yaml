@@ -31,3 +31,7 @@ services:
 
     App\Service\TourImporter:
         public: true
+        arguments: ['@doctrine.orm.entity_manager']
+
+    App\Security\StravaAuthenticator:
+        arguments: ['@doctrine.orm.entity_manager', '@router']
