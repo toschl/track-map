@@ -1,0 +1,18 @@
+html {
+    height: 100vh;
+}
+body {
+    height: 100vh;
+    padding-top: 4em;
+}
+#googleMap {
+    height: 80vh;
+    width: 100%;
+}
+.jumbotron {
+    background-color: transparent;
+    text-align: center;
+}
+.infowindow h1 {
+    font-size: 1rem;
+}
